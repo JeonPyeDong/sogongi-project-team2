@@ -5,13 +5,12 @@ public class Student {
 	private String studentName;
 	private String[] studentSubject = new String[6];
 	private String studentPassword;
-	public Student[] student = new Student[50];
 	
 	public Student(String id, String name, String[] subject) {
 		this.studentPassword = "1234";
-	    this.studentId = id;
-	    this.studentName = name;
-	    this.studentSubject = subject;
+		this.studentId = id;
+		this.studentName = name;
+		this.studentSubject = subject;
 	}
 	public String getStudentId() {
 		return studentId;
