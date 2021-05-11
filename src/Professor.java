@@ -27,7 +27,7 @@ public class Professor {
 	public void setPassword(String passwd) {
 		this.password = passwd;
 	}
-	// ������ student ��ü�� ��ȯ�ϴ� class
+	// 생성된 student 객체를 반환하는 class
 	public Student addStudent() {
 		Scanner sc = new Scanner(System.in);
 		String studentId;
@@ -35,34 +35,85 @@ public class Professor {
 		String studentSubject;
 		Student newstudent = new Student();
 		
-		System.out.println("-- �л� �߰� --");
-		System.out.print("�й� �Է� >> ");
+		System.out.println("-- 학생 추가 --");
+		System.out.print("학번 입력 >> ");
 		studentId = sc.next();
 		while(true) {
-			// studentId�� �����ϸ� ��ü �л��迭���� �ߺ��Ǵ� �й��� �ִ��� ã�� �޼ҵ�. ��ȯ Ÿ���� boolean �� ����.
-			// �й��� �ߺ��� �Ǹ�,
+			// studentId를 전달하면 전체 학생배열에서 중복되는 학번이 있는지 찾는 메소드. 반환 타입은 boolean 을 가짐.
+			// 학번이 중복이 되면,
 			if(!true) {	
-				System.out.println("�й��� �ߺ��Ǿ����ϴ�. �ٽ� �Է����ּ���.");
-				System.out.print("�й� �Է� >> ");
+				System.out.println("학번이 중복되었습니다. 다시 입력해주세요.");
+				System.out.print("학번 입력 >> ");
 				studentId = sc.next();	
 			} else {
-				System.out.println("�й� ��ϿϷ�.");
+				System.out.println("학번 등록완료.");
 				break;
 			}
 		}
 		
-		System.out.print("�л� �̸� �Է� >> ");
+		System.out.print("학생 이름 입력 >> ");
 		studentName = sc.next();
-		// ���⼭ ������ ��� ������? ������ �ϳ��� �ް� �޼ҵ带 �ϳ� �� ������?
-		System.out.print("���� ���� �Է� >> ");
+		// 여기서 과목을 모두 받을지? 과목은 하나만 받고 메소드를 하나 더 만들지?
+		System.out.print("수강 과목 입력 >> ");
 		studentSubject = sc.next();
 		
-		//new student�� �Է¹��� ���� ����.
-		System.out.printf("�й� : [%s]%n�̸� : [%s]%n����� : [%s]%n", studentId, studentName,studentSubject);
+		//new student에 입력받은 정보 저장.
+		System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", studentId, studentName,studentSubject);
 		return newstudent;
 	}
 	
-	 public void deleteStudent(Student[] delstudentarray){
-	}	
+	 public void deleteStudent(Student[] s) { 
+		 // main 클래스에서 학생객체배열을 생성하고 넘겨 줘야 함.
+		 System.out.println("삭제 하려는 학생의 학번을 입력해 주세요 : ");
+		 Scanner input = new Scanner(System.in);
+		 String srt = input.next();
+		 int index = 0; 
+		 // 삭제할 학생의 인덱스를 저장할 변수
+		 boolean isEqualId = false; 
+		 // 반복문에서 학생을 찾았을 경우 true로 변경
+		 for(int i = 0 ; i < s.length; i++) { 
+			 // 학생이 수강하는 과목배열의 길이만큼 반복
+		 if(srt == s[i].getStudentId()) { 
+			 // 입력한 값이 학생의 학번과 같으면 그 인덱스를 저장한다.
+		  index = i; 
+		  	// 인덱스 저장
+		  isEqualId = true; 
+		  	// 학생을 찾음
+		 	}
+		 }
+		 if(isEqualId == false) { 
+			 // is의 값이 false이면 즉, if문을 통해서 학생의 id를 찾지 못했을 때
+			 System.out.println("찾으시는 학생의 학번이 존재 하지 않습니다."); 
+		 }
+		 else {
+			 s[index].setStudentSubjects(null); 
+			 // 로그인한 교수님의 과목을 삭제해야 하는데 s[index]배열에서 과목을 하나만 삭제시키는 법을 모르겠음.
+			 System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[index].getStudentId(), s[index].getStudentName(), s[index].getStudentSubjects()); 
+			 // 삭제된 학생의 이름과 학번 출력
+		 }
+		 
+	}
+	 public boolean isEqualProfessorName(String s, Professor[] p) {
+		                                 // main 클래스에서 교수객체배열을 생성하고 문자열과 함께 넘겨 줘야 함.
+		 for(int i = 0; i < p.length; i++) {
+			 if(p[i].getName() == s) {
+				 return true; 
+				 // 중복이 있다.
+			 }
+		 }
+		 return false; 
+		 // 중복이 없다.
+	 }
+	 public boolean isEqualProfessorPassword(String s, Professor[] p) {
+		                                   // main 클래스에서 교수객체배열과 문자열을 매개변수로 받는다.
+		 for(int i = 0; i < p.length; i++) {
+			 if(p[i].getPassword() == s) {
+				 return true; 
+				 // 중복이 있다.
+			 }
+		 }
+		 return false; 
+		 // 중복이 없다.
+	 }
 	
 }
