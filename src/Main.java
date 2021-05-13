@@ -5,7 +5,8 @@ public class Main {
 		
 		int exitFlag = 0;
 		int saveFlag = 0; // 저장 후 변경이 있는지 확인하는 변수 0이면 변경후 미저장
-
+		Professor whoPro = new Professor(null, null, null);
+		Student whoStu = new Student(null, null, args);
 		Scanner s = null;
 		try {
 			s = new Scanner(System.in);
@@ -14,11 +15,14 @@ public class Main {
 				int input = s.nextInt();
 				switch (input) {
 				case 1:
-					logInToProfessor(s);
+					//logInToProfessor(s);
+					logProfessor(whoPro);
+					System.out.println(whoPro.getName() + "교수님, 환영합니다!");
 					saveFlag = 0;
 					break;
 				case 2:
-					logInToStudent(s);
+					//logInToStudent(s);
+					//logStudent();
 					saveFlag = 0;
 					break;
 				case 0:
@@ -53,7 +57,8 @@ public class Main {
 		System.out.println("0. 프로그램 종료");
 		System.out.print("입력 >> ");
 	}
-	
+
+/*
 	static void logInToProfessor(Scanner s) {
 		String name;
 		String password;
@@ -97,4 +102,61 @@ public class Main {
 		else
 			System.out.println("E : 존재하지 않는 학생입니다.");
 	}
+*/
+
+private static Professor logProfessor(Professor whoPro){
+Professor[] PF;
+PF = new Professor[6];
+Scanner sc = new Scanner(System.in);
+String logid;
+String logpw;
+boolean idpass = false;
+boolean pwpass = false;
+
+System.out.println("ID를 입력하세요 >> ");
+logid = sc.nextLine();
+System.out.println("비밀번호를 입력하세요 >> ");
+logpw = sc.nextLine();
+ 
+		for(Professor i : PF){
+			if(logid.equals(i.getName())) idpass = true;
+			if(logpw.equals(i.getPassword())) pwpass = true;
+			whoPro = i;
+			break;
+		}
+
+	if(idpass && pwpass) {
+	System.out.println("로그인 성공!");	
+	}
+	return whoPro;
+ } 			// logProfessor() 끝
+
+/*
+private static Student logStudent(){
+Student[] ST;
+ST = new Student[];
+Scanner sc = new Scanner(System.in);
+String logid;
+String logpw;
+boolean idpass = false;
+boolean pwpass = false;
+
+System.out.println("ID를 입력하세요 >> ");
+logid = sc.nextLine();
+System.out.println("비밀번호를 입력하세요 >> ");
+logpw = sc.nextLine();
+ 
+		for(Professor i : PF){
+			if(logid.equals(i.getStudentId())) idpass = true;
+			if(logpw.equals(i.getStudentPassword())) pwpass = true;
+			whoStu = i;
+			break;
+		}
+
+	if(idpass && pwpass) {
+	System.out.println("로그인 성공!");	
+	}
+	return whoStu;
+ }			 // logStudent() 끝 
+ */
 }
