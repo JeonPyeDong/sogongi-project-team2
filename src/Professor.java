@@ -137,5 +137,54 @@ public class Professor {
 		return false;
 		// 중복이 없다.
 	}
+	public void modifyStudent(Student[] s) {
+		// main 클래스에서 학생객체배열을 생성하고 넘겨 줘야 함.
+		System.out.println("수정 하려는 학생의 학번을 입력해 주세요 : ");
+		Scanner input = new Scanner(System.in);
+		String srt;
+		int index = 0;
+		// 삭제할 학생의 인덱스를 저장할 변수
+		boolean isEqualId = false;
+		// 반복문에서 학생을 찾았을 경우 true로 변경
+
+		while (true) {
+			// 학번 찾는 반복문
+			srt = input.next();
+			for (int i = 0; i < s.length; i++) { // 학생배열의 길이만큼 반복
+				if (srt.equals(s[i].getStudentId())) { // 입력한 값이 학생의 학번과 같으면 그 인덱스를 저장한다.
+					index = i; // 인덱스 저장
+					isEqualId = true; // 학생을 찾음
+					break;
+				}
+			}
+
+			if (isEqualId == false) {
+				System.out.println("찾으시는 학생의 학번이 존재 하지 않습니다.");
+			} else {
+				System.out.println("0. 이름수정");
+				System.out.println("1. 학번수정");
+				int s1 = input.nextInt();
+				    switch(s1) {
+				    case 0 : 
+				    	String newName = input.next();
+				    	s[index].setStudentName(newName);
+				    	break;
+				    case 1 :
+				    	String newId = input.next();
+				    	s[index].setStudentId(newId);
+				    	break;
+				    default :
+				    	System.out.println("0과 1 중 하나만 선택해 주세요.");
+				}
+			}
+			System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[index].getStudentId(),
+					s[index].getStudentName(), this.getSubject());
+				System.out.println("해당 학생이 교수님의 과목에서 수정 되었습니다.");
+				break;
+			}
+		
+		return;
+	}
+
 
 }
