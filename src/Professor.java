@@ -5,6 +5,10 @@ public class Professor {
 	private String name;
 	private String password;
 
+	public Professor() {
+		
+	}
+	
 	public Professor(String n, String s, String p) {
 		this.name = n;
 		this.subject = s;
