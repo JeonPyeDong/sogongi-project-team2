@@ -6,12 +6,17 @@ public class Student {
 	private String[] studentSubject = new String[6];
 	private String studentPassword;
 
+	public Student() {
+	}
+	
 	public Student(String id, String name, String[] subject) {
 		this.studentPassword = "1234";
 		this.studentId = id;
 		this.studentName = name;
 		this.studentSubject = subject;
 	}
+	
+
 
 	public String getStudentId() {
 		return studentId;
@@ -79,7 +84,7 @@ public class Student {
 		System.out.println("]");
 		studentLogin();
 	}
-
+	
 	// 학생으로 로그인 했을 때 선택.
 	public void studentLogin() {
 		System.out.println("-----------------");
@@ -102,10 +107,10 @@ public class Student {
 	}
 
 	// studentId를 전달 받으면 전체 학생배열에서 중복되는 학번이 있는지 찾는 메소드.
-	public boolean studentIdCheck(String id) {
+	public boolean studentIdCheck(String id, Student[] studentArray) {
 		boolean check = false;
-		for (int i = 0; i < student.length; i++) {
-			if (student[i].studentId == id)
+		for (int i = 0; i < studentArray.length; i++) {
+			if (studentArray[i].getStudentId() == id)
 				check = true;
 		}
 		return check;
