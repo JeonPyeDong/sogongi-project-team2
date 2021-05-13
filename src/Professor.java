@@ -4,7 +4,7 @@ public class Professor {
 	private String subject;
 	private String name;
 	private String password;
-
+	
 	public Professor() {
 		
 	}
