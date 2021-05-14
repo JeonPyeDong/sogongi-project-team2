@@ -25,6 +25,9 @@ public class Main {
 					//logStudent();
 					saveFlag = 0;
 					break;
+				case 3:
+					professorAdd();
+					break;
 				case 0:
 					if (saveFlag == 0) {
 						System.out.println("변경 후 저장되지 않았습니다. 정말 종료하시겠습니까? (y/n)");
@@ -54,6 +57,7 @@ public class Main {
 		System.out.println("=== 소프트웨어공학과 수강과목 관리 프로그램 ===");
 		System.out.println("1. 교수로 로그인");
 		System.out.println("2. 학생으로 로그인");
+		System.out.println("3. 교수 등록");
 		System.out.println("0. 프로그램 종료");
 		System.out.print("입력 >> ");
 	}
@@ -104,31 +108,29 @@ public class Main {
 	}
 */
 
-private static Professor logProfessor(Professor whoPro){
-Professor[] PF;
-PF = new Professor[6];
-Scanner sc = new Scanner(System.in);
-String logid;
-String logpw;
-boolean idpass = false;
-boolean pwpass = false;
+	private static Professor logProfessor(Professor whoPro){
+		Scanner sc = new Scanner(System.in);
+		String logid;
+		String logpw;
+		boolean idpass = false;
+		boolean pwpass = false;
 
-System.out.println("ID를 입력하세요 >> ");
-logid = sc.nextLine();
-System.out.println("비밀번호를 입력하세요 >> ");
-logpw = sc.nextLine();
+		System.out.println("ID를 입력하세요 >> ");
+		logid = sc.nextLine();
+		System.out.println("비밀번호를 입력하세요 >> ");
+		logpw = sc.nextLine();
  
-		for(Professor i : PF){
+		for(Professor i : professor){
 			if(logid.equals(i.getName())) idpass = true;
 			if(logpw.equals(i.getPassword())) pwpass = true;
 			whoPro = i;
 			break;
 		}
 
-	if(idpass && pwpass) {
-	System.out.println("로그인 성공!");	
-	}
-	return whoPro;
+		if(idpass && pwpass) {
+			System.out.println("로그인 성공!");	
+		}
+		return whoPro;
  } 			// logProfessor() 끝
 
 /*
@@ -140,7 +142,6 @@ String logid;
 String logpw;
 boolean idpass = false;
 boolean pwpass = false;
-
 System.out.println("ID를 입력하세요 >> ");
 logid = sc.nextLine();
 System.out.println("비밀번호를 입력하세요 >> ");
@@ -152,11 +153,23 @@ logpw = sc.nextLine();
 			whoStu = i;
 			break;
 		}
-
 	if(idpass && pwpass) {
 	System.out.println("로그인 성공!");	
 	}
 	return whoStu;
  }			 // logStudent() 끝 
  */
+
+	public static Professor[] professor = new Professor[6];
+	public static int professorCount = 0;
+	
+	public static void professorAdd() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("교수로 등록할 이름을 입력하세요.");
+		String name = sc.nextLine();
+		System.out.println("비밀번호를 입력하세요.");
+		String pw = sc.nextLine();
+		professor[professorCount++] = new Professor(name, pw);
+}
+
 }
