@@ -9,6 +9,11 @@ public class Professor {
 		
 	}
 	
+	public Professor(String n, String p) {
+		this.name = n;
+		this.password = p;
+	}
+	
 	public Professor(String n, String s, String p) {
 		this.name = n;
 		this.subject = s;
