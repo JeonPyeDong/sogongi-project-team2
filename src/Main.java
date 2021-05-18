@@ -1,20 +1,23 @@
 import java.util.Scanner;
 
 public class Main {
-	public static Professor[] professor = new Professor[6];
-	public static int professorCount = 0;
+	public static Professor[] professorList = new Professor[6];
+	public static Student[] studentList = new Student[100];
+	public static int professorListCount = 0;
+	public static int studentListCount = 0;
 
 	// 초기 교수배열을 초기화하는 메소드. 테스트 용임. professorAdd()가 구현된다면 삭제될 메소드.
 	static void setUpProfessor() {
 		String initpasswd = "1234";
-		professor[0] = new Professor("정희용", "선형대수학", initpasswd);
-		professor[1] = new Professor("김경백", "리눅스시스템", initpasswd);
-		professor[2] = new Professor("이귀상", "논리회로", initpasswd);
-		professor[3] = new Professor("김승원", "소프트웨어공학기초프로젝트", initpasswd);
-		professor[4] = new Professor("강대욱", "자바프로그래밍", initpasswd);
-		professor[5] = new Professor("임형석", "이산수학", initpasswd);
+		professorList[0] = new Professor("정희용", "선형대수학", initpasswd);
+		professorList[1] = new Professor("김경백", "리눅스시스템", initpasswd);
+		professorList[2] = new Professor("이귀상", "논리회로", initpasswd);
+		professorList[3] = new Professor("김승원", "소프트웨어공학기초프로젝트", initpasswd);
+		professorList[4] = new Professor("강대욱", "자바프로그래밍", initpasswd);
+		professorList[5] = new Professor("임형석", "이산수학", initpasswd);
 	}
 
+	// 초기 메뉴를 print 하는 메뉴
 	static void printMenu() {
 		System.out.println("=== 소프트웨어공학과 수강과목 관리 프로그램 ===");
 		System.out.println("1. 교수로 로그인");
@@ -31,7 +34,7 @@ public class Main {
 		String name = sc.nextLine();
 		System.out.println("비밀번호를 입력하세요.");
 		String pw = sc.nextLine();
-		professor[professorCount++] = new Professor(name, pw);
+		professorList[professorListCount++] = new Professor(name, pw);
 	}
 
 	// whoPro가 메인메소드의 whopro를 뜻하는지?
@@ -47,7 +50,7 @@ public class Main {
 		System.out.println("비밀번호를 입력하세요 >> ");
 		logpw = sc.nextLine();
 
-		for (Professor i : professor) {
+		for (Professor i : professorList) {
 			if (logid.equals(i.getName()))
 				idpass = true;
 			if (logpw.equals(i.getPassword()))
