@@ -4,16 +4,16 @@ public class Professor {
 	private String subject;
 	private String name;
 	private String password;
-	
+
 	public Professor() {
-		
+
 	}
-	
+
 	public Professor(String n, String p) {
 		this.name = n;
 		this.password = p;
 	}
-	
+
 	public Professor(String n, String s, String p) {
 		this.name = n;
 		this.subject = s;
@@ -44,7 +44,7 @@ public class Professor {
 		this.password = passwd;
 	}
 
-	// 생성된 student 객체를 반환하는 class
+	// 학생을 생성하는 메소드. 생성된 student 객체를 반환한다.
 	public Student addStudent() {
 		Scanner sc = new Scanner(System.in);
 		String studentId;
@@ -79,6 +79,7 @@ public class Professor {
 		return newstudent;
 	}
 
+	// 학생의 과목을 삭제하는 메소드. 교수의 과목을 받아올 필요가 없다.
 	public void deleteStudent(Student[] s) {
 		// main 클래스에서 학생객체배열을 생성하고 넘겨 줘야 함.
 		System.out.println("삭제 하려는 학생의 학번을 입력해 주세요 : ");
@@ -119,6 +120,7 @@ public class Professor {
 		return;
 	}
 
+	// 교수의 이름이 일치하는지 확인하는 메소드, 인덱스는 별도로 반환하지 않음.
 	public boolean isEqualProfessorName(String s, Professor[] p) {
 		// main 클래스에서 교수객체배열을 생성하고 문자열과 함께 넘겨 줘야 함.
 		for (int i = 0; i < p.length; i++) {
@@ -131,6 +133,7 @@ public class Professor {
 		// 중복이 없다.
 	}
 
+	// 교수의 비밀번호가 일치 하는지 검증하는 메소드. 인덱스는 별도로 반환하지 않음.
 	public boolean isEqualProfessorPassword(String s, Professor[] p) {
 		// main 클래스에서 교수객체배열과 문자열을 매개변수로 받는다.
 		for (int i = 0; i < p.length; i++) {
@@ -142,6 +145,8 @@ public class Professor {
 		return false;
 		// 중복이 없다.
 	}
+
+	// 학생의 정보를 수정하는 메소드. 미완
 	public void modifyStudent(Student[] s) {
 		// main 클래스에서 학생객체배열을 생성하고 넘겨 줘야 함.
 		System.out.println("수정 하려는 학생의 학번을 입력해 주세요 : ");
@@ -151,7 +156,6 @@ public class Professor {
 		// 삭제할 학생의 인덱스를 저장할 변수
 		boolean isEqualId = false;
 		// 반복문에서 학생을 찾았을 경우 true로 변경
-
 		while (true) {
 			// 학번 찾는 반복문
 			srt = input.next();
@@ -165,31 +169,31 @@ public class Professor {
 
 			if (isEqualId == false) {
 				System.out.println("찾으시는 학생의 학번이 존재 하지 않습니다.");
+				break; // 종료.
 			} else {
 				System.out.println("0. 이름수정");
 				System.out.println("1. 학번수정");
 				int s1 = input.nextInt();
-				    switch(s1) {
-				    case 0 : 
-				    	String newName = input.next();
-				    	s[index].setStudentName(newName);
-				    	break;
-				    case 1 :
-				    	String newId = input.next();
-				    	s[index].setStudentId(newId);
-				    	break;
-				    default :
-				    	System.out.println("0과 1 중 하나만 선택해 주세요.");
+				switch (s1) {
+					case 0:
+						String newName = input.next();
+						s[index].setStudentName(newName);
+						break;
+					case 1:
+						String newId = input.next();
+						s[index].setStudentId(newId);
+						break;
+					default:
+						System.out.println("0과 1 중 하나만 선택해 주세요.");
 				}
 			}
-			System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[index].getStudentId(),
-					s[index].getStudentName(), this.getSubject());
-				System.out.println("해당 학생이 교수님의 과목에서 수정 되었습니다.");
-				break;
-			}
-		
+			System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[index].getStudentId(), s[index].getStudentName(),
+					this.getSubject());
+			System.out.println("해당 학생이 교수님의 과목에서 수정 되었습니다.");
+			break;
+		}
+
 		return;
 	}
-
 
 }
