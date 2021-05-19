@@ -103,7 +103,7 @@ public class Student {
 	}
 	//Id를 전달 받으면 전체 학생 객체배열에서 중복되는 학번이 있는지 찾는 메소드
 	//로그인 시 아이디가 일치한지 확인하는 메소드
-	public boolean isEqualStudentId(String id, Student[] stu) {
+	public static boolean isEqualStudentId(String id, Student[] stu) {
 		boolean check = false; 
 		for(int i = 0; i < stu.length; i++) {
 			if(id.equals(stu[i].getStudentId()))
@@ -112,7 +112,7 @@ public class Student {
 		return check;
 	}
 	//로그인 시 비밀번호가 일치한지 확인하는 메소드
-	public boolean isEqualStudentPassword(String password, Student[] stu) {
+	public static boolean isEqualStudentPassword(String password, Student[] stu) {
 		boolean check = false; 
 		for(int i = 0; i < stu.length; i++) {
 			if(password.equals(stu[i].getStudentPassword()))
