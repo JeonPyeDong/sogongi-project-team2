@@ -121,8 +121,7 @@ public class Professor {
 	}
 
 	// 교수의 이름이 일치하는지 확인하는 메소드, 인덱스는 별도로 반환하지 않음.
-	public boolean isEqualProfessorName(String s, Professor[] p) {
-		// main 클래스에서 교수객체배열을 생성하고 문자열과 함께 넘겨 줘야 함.
+	public static boolean isEqualProfessorName(String s, Professor[] p) {
 		for (int i = 0; i < p.length; i++) {
 			if (p[i].getName() == s) {
 				return true;
@@ -134,7 +133,7 @@ public class Professor {
 	}
 
 	// 교수의 비밀번호가 일치 하는지 검증하는 메소드. 인덱스는 별도로 반환하지 않음.
-	public boolean isEqualProfessorPassword(String s, Professor[] p) {
+	public static boolean isEqualProfessorPassword(String s, Professor[] p) {
 		// main 클래스에서 교수객체배열과 문자열을 매개변수로 받는다.
 		for (int i = 0; i < p.length; i++) {
 			if (p[i].getPassword() == s) {
