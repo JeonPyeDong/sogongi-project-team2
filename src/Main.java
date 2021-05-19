@@ -42,10 +42,11 @@ public class Main {
 						System.out.println("안녕하세요. 교수님");
 						System.out.println("이름을 입력하세요.");
 						String name = s.nextLine();
-						if(Professor.isEqualProfessorName(name, professorList)) {
+						/* if 문 수정 필요 */
+						if(Professor.indexEqualProfessorName(name, professorList)) { 
 							System.out.println("비밀번호를 입력하세요.");
 							String password = s.nextLine();
-							if(Professor.isEqualProfessorPassword(password, professorList)) {
+							if(Professor.indexEqualProfessorPassword(password, professorList)) {
 								// currentAccount를 로그인된 계정의 인덱스넘버로 바꾸고 싶은데 모르겠음
 								System.out.println(professorList[currentAccount].getName() + " 교수님 환영합니다!");
 								// studentLogin처럼 Professor도 저런거 만들어줄 수 있음?
@@ -57,6 +58,7 @@ public class Main {
 						else {
 							System.out.println("잘못된 이름입니다.");
 						}
+						/* if 문 수정 필요 : 메소드 변경 isEqualProfessorName*/
 						saveFlag = 0;
 						break;
 					case 2:
