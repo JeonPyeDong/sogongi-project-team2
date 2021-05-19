@@ -175,10 +175,12 @@ public class Professor {
 				int s1 = input.nextInt();
 				switch (s1) {
 					case 0:
+						System.out.println("수정하려는 학생의 이름을 입력해 주세요.");
 						String newName = input.next();
 						s[index].setStudentName(newName);
 						break;
 					case 1:
+						System.out.println("수정하려는 학생의 학번을 입력해 주세요.");
 						String newId = input.next();
 						s[index].setStudentId(newId);
 						break;
