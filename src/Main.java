@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class Main {
 	public static Professor[] professorList = new Professor[6];
 	public static Student[] studentList = new Student[100];
@@ -33,32 +34,36 @@ public class Main {
 		setUpProfessor();
 		Scanner s = null;
 		try {
-			s = new Scanner(System.in);
-			while (exitFlag == 0) {
+				s = new Scanner(System.in);
+				while (exitFlag == 0) {
 				printMenu(); // 메뉴 출력
 				int input = s.nextInt();
 				switch (input) {
 					case 1:
 						System.out.println("안녕하세요. 교수님");
 						System.out.println("이름을 입력하세요.");
-						String name = s.nextLine();
-						/* if 문 수정 필요 */
-						if(Professor.indexEqualProfessorName(name, professorList)) { 
-							System.out.println("비밀번호를 입력하세요.");
-							String password = s.nextLine();
-							if(Professor.indexEqualProfessorPassword(password, professorList)) {
-								// currentAccount를 로그인된 계정의 인덱스넘버로 바꾸고 싶은데 모르겠음
-								System.out.println(professorList[currentAccount].getName() + " 교수님 환영합니다!");
-								// studentLogin처럼 Professor도 저런거 만들어줄 수 있음?
+						String name = s.next();
+						currentAccount = Professor.indexEqualProfessorName(name, professorList);
+						while(true){
+							if(currentAccount == -1){
+								System.out.println("요청하신 이름이 존재하지 않습니다. 다시입력해주세요.");
+								name = s.next();
+								currentAccount = Professor.indexEqualProfessorName(name, professorList);
 							}
-							else {
-								System.out.println("잘못된 비밀번호입니다.");
+							else{break;}
+						}
+						System.out.printf("이름 : %s 교수님.%n비밀번호를 입력해주세요. :", name);
+						String professorPassword = s.next();
+						while(true){
+							if(!professorList[currentAccount].isEqualProfessorPassword(professorPassword)){
+								System.out.println("비밀번호가 일치하지 않습니다. 다시 시도 해주세요.");
+								professorPassword = s.next();							}
+							else{
+								System.out.println(professorList[currentAccount].getName()+"교수님, 환영합니다.");
+								break;
 							}
 						}
-						else {
-							System.out.println("잘못된 이름입니다.");
-						}
-						/* if 문 수정 필요 : 메소드 변경 isEqualProfessorName*/
+						/* log professor session */
 						saveFlag = 0;
 						break;
 					case 2:
