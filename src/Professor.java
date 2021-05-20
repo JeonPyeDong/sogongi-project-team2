@@ -104,7 +104,7 @@ public class Professor {
 			if (isEqualId == false) {
 				System.out.println("찾으시는 학생의 학번이 존재 하지 않습니다.");
 			} else {
-				String[] k = s[index].getStudentSubjects();
+				String[] k = s[index].getStudentSubject();
 				for (int i = 0; i < k.length; i++) {
 					if (k[i].equals(this.getSubject())) {
 						k[i] = "";
@@ -123,7 +123,7 @@ public class Professor {
 	// 교수의 이름이 일치하는지 확인하는 메소드, 인덱스는 별도로 반환하지 않음.
 	public static int indexEqualProfessorName(String s, Professor[] p) {
 		for (int i = 0; i < p.length; i++) {
-			if (p[i].getName() == s) {
+			if (s.equals(p[i].getName())) {
 				return i;
 				// 중복이 있다.
 			}
@@ -132,17 +132,13 @@ public class Professor {
 		// 중복이 없다.
 	}
 
-	// 교수의 비밀번호가 일치 하는지 검증하는 메소드. 인덱스는 별도로 반환하지 않음.
-	public static int indexEqualProfessorPassword(String s, Professor[] p) {
-		// main 클래스에서 교수객체배열과 문자열을 매개변수로 받는다.
-		for (int i = 0; i < p.length; i++) {
-			if (p[i].getPassword() == s) {
-				return i;
-				// 중복이 있다.
-			}
+	public boolean isEqualProfessorPassword(String passwd) {
+		if(passwd.equals(this.getPassword())){
+			return true;
 		}
-		return -1;
-		// 중복이 없다.
+		else{
+			return false;
+		}
 	}
 
 	// 학생의 정보를 수정하는 메소드. 미완
