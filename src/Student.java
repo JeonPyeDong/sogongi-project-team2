@@ -6,6 +6,9 @@ public class Student {
 	private String[] studentSubject = new String[6];
 	private String studentPassword;
 	
+	public Student() {
+		
+	}
 	public Student(String id, String name, String[] subject) {
 		this.studentPassword = "1234";
 	    this.studentId = id;
