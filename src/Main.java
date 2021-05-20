@@ -16,7 +16,7 @@ public class Main {
 		professorList[3] = new Professor("김승원", "소프트웨어공학기초프로젝트", initpasswd);
 		professorList[4] = new Professor("강대욱", "자바프로그래밍", initpasswd);
 		professorList[5] = new Professor("임형석", "이산수학", initpasswd);
-	}
+	}	
 
 	// 초기 메뉴를 print 하는 메뉴
 	static void printMenu() {
@@ -105,27 +105,42 @@ public class Main {
 						}
 						saveFlag = 0;
 						break;
+						
 					case 2:
 						System.out.println("안녕하세요. 학우님");
 						System.out.println("학번을 입력하세요.");
 						String id = s.next();
+						while(true) {
 						if(Student.isEqualStudentId(id, studentList)) {
-							System.out.println("비밀번호를 입력하세요.");
-							String password = s.next();
+							break;}
+						else{
+							System.out.println("입략하신 ID가 존재하지 않습니다. 다시 시도해주세요.");}
+							id = s.next();
+						}
+						System.out.println("비밀번호를 입력하세요.");
+						String password = s.next();
+						while(true) {
 							if(Student.isEqualStudentPassword(password, studentList)) {
 								// currentAccount를 로그인된 계정의 인덱스넘버로 바꾸고 싶어
 								System.out.println(studentList[currentAccount].getStudentName() + " 학우님 환영합니다!");
 								studentList[currentAccount].studentLogin();
-							}
+								break;}
 							else {
-								System.out.println("잘못된 비밀번호입니다.");
-							}
+								System.out.println("잘못된 비밀번호입니다. 다시 시도해주세요.");}
+								password = s.next();
 						}
-						else {
-							System.out.println("잘못된 이름입니다.");
+					/*	학생 로그인 상태 유지. logInProfessor()처럼 studentLogin()에서 int값 반환해 줘야 함.
+						while(true) {
+							if(studentLogin() == -1){	이거 메인클래스로 가져오는 법을 모르겠습니다..
+								studentLogin();}
+							else {
+								break;}
 						}
+						*/
 						saveFlag = 0;
 						break;
+						
+						
 					case 0:
 						if (saveFlag == 0) {
 							System.out.println("변경 후 저장되지 않았습니다. 정말 종료하시겠습니까? (y/n)");
