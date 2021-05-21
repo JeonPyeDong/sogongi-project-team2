@@ -43,7 +43,7 @@ public class Main {
 					check_idx = 1; // 1 이면 로그아웃
 					break;
 				case 1: //학생 추가
-					studentList = professorList[currentAccount].addStudent();
+					studentList = professorList[currentAccount].addStudent(); // studentList에 대입.
 					break;
 				case 2:        //학생 삭제
 					professorList[currentAccount].deleteStudent(studentList);
@@ -161,6 +161,7 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("예외 발생(프로그램 종료)" + " " + e.getMessage());
+			// 예외경로와 무슨 예외를 던졌는지 알게끔 수정함.
 		} finally {
 			s.close();
 		}

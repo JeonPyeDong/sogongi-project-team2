@@ -35,6 +35,9 @@ public class Student {
 	}
 	public void setStudentSubject(String subject) {
 		this.studentSubject[Main.currentAccount] = subject;
+		/* 원래 setStudentSubject는 반환형이 string배열이였는데 string으로 고침.
+		 또한 인덱스 자리에 Main클래스의 currentAccount를 끌어다 씀.		 
+		 */
 	}
 	public void setStudentPassword(String password) {
 		this.studentPassword = password;
