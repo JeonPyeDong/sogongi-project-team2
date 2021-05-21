@@ -33,8 +33,8 @@ public class Student {
 	public void setStudentName(String name) {
 		this.studentName = name;
 	}
-	public void setStudentSubject(String[] subject) {
-		this.studentSubject = subject;
+	public void setStudentSubject(String subject) {
+		this.studentSubject[Main.currentAccount] = subject;
 	}
 	public void setStudentPassword(String password) {
 		this.studentPassword = password;
@@ -109,8 +109,10 @@ public class Student {
 	public static boolean isEqualStudentId(String id, Student[] stu) {
 		boolean check = false; 
 		for(int i = 0; i < stu.length; i++) {
-			if(id.equals(stu[i].getStudentId()))
+			if(id.equals(stu[i].getStudentId())) {
 				check = true;
+				break;
+			}
 		}
 		return check;
 	}

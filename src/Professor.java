@@ -4,6 +4,7 @@ public class Professor {
 	private String subject;
 	private String name;
 	private String password;
+	private int studentNumber;
 
 	public Professor() {
 
@@ -31,6 +32,10 @@ public class Professor {
 	public String getPassword() {
 		return this.password;
 	}
+	
+	public int getStudentNumber() {
+		return this.studentNumber;
+	}
 
 	public void setSubject(String sub) {
 		this.subject = sub;
@@ -43,41 +48,78 @@ public class Professor {
 	public void setPassword(String passwd) {
 		this.password = passwd;
 	}
+	
+	public void setStudentNumber(int i) {
+		this.studentNumber = i;
+	}
 
-	// 학생을 생성하는 메소드. 생성된 student 객체를 반환한다.
-	public Student addStudent() {
+	// 학생을 생성하는 메소드. 생성된 student[] 객체를 반환한다.
+	public Student[] addStudent() {
 		Scanner sc = new Scanner(System.in);
 		String studentId;
 		String studentName;
-		String studentSubject;
-		Student newstudent = new Student();
-
-		System.out.println("-- 학생 추가 --");
-		System.out.print("학번 입력 >> ");
-		studentId = sc.next();
-		while (true) {
-			// studentId를 전달하면 전체 학생배열에서 중복되는 학번이 있는지 찾는 메소드. 반환 타입은 boolean 을 가짐.
-			// 학번이 중복이 되면,
-			if (!true) {
-				System.out.println("학번이 중복되었습니다. 다시 입력해주세요.");
+		Student[] newstudent = new Student[100];
+		for(int i = 0; i < 100; i++) {
+			newstudent[i] = new Student();
+		}
+		int index = getStudentNumber(); // 학생객체배열의 인덱스를 불러옴.
+		int retry = 0; // 학생추가 메소드를 반복하는 기능을 구현하기 위해 필요한 변수
+		while(true) {
+			if(retry == 0) {
+				System.out.println("-- 학생 추가 --");
 				System.out.print("학번 입력 >> ");
 				studentId = sc.next();
-			} else {
-				System.out.println("학번 등록완료.");
-				break;
-			}
+				 while (true) {
+					// studentId를 전달하면 전체 학생배열에서 중복되는 학번이 있는지 찾는 메소드. 반환 타입은 boolean 을 가짐.
+					// 학번이 중복이 되면,
+					if (Student.isEqualStudentId(studentId,newstudent)) {
+						System.out.println("학번이 중복되었습니다. 다시 입력해주세요.");
+						System.out.print("학번 입력 >> ");
+						studentId = sc.next();
+					} else {
+						newstudent[index].setStudentId(studentId); // 학번저장
+						System.out.println("학번 등록완료.");
+						break;
+					}	
 		}
+				
+				System.out.print("학생 이름 입력 >> ");
+				studentName = sc.next();
+				newstudent[index].setStudentName(studentName); // 이름 저장
+				newstudent[index].setStudentSubject(this.subject); // 현재 로그인된 교수님의 과목으로 저장
+				System.out.println((index+1)+"번 째 학생 추가 하였습니다.");
+				System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", newstudent[index].getStudentId(), newstudent[index].getStudentName(), this.subject);
+				System.out.println("다시 한번 학생을 추가 하시겠습니까?");
+				System.out.println("0. 예"); 
+				System.out.println("1. 아니요");
+				retry = sc.nextInt(); 
+				while(true) {
+				switch(retry) {
+				
+				case 0 :
+					break;
+					
+				case 1 :
+					break;
+					
+				default :
+					System.out.println("다시 입력하여 주세요.");
+					retry = sc.nextInt();
 
-		System.out.print("학생 이름 입력 >> ");
-		studentName = sc.next();
-		// 여기서 과목을 모두 받을지? 과목은 하나만 받고 메소드를 하나 더 만들지?
-		System.out.print("수강 과목 입력 >> ");
-		studentSubject = sc.next();
-
-		// new student에 입력받은 정보 저장.
-		System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", studentId, studentName, studentSubject);
-		return newstudent;
-	}
+					if(retry == 0 || retry == 1) {break;} // 1과 0이 아닌 다른 수를 입력하면 반복하게 만듬.
+					
+					else {continue;}
+								}
+				break;
+							}
+				index++; 
+				 setStudentNumber(index); // 1 더한 index 값을 setter를 통해 설정함.
+			} 
+			
+			else {break;} // retry가 1이면 종료
+		}
+		return newstudent; // loginProfessor로 넘어감.
+			}
 
 	// 학생의 과목을 삭제하는 메소드. 교수의 과목을 받아올 필요가 없다.
 	public void deleteStudent(Student[] s) {
