@@ -87,6 +87,7 @@ public class Professor {
 				studentName = sc.next();
 				newstudent[index].setStudentName(studentName); // 이름 저장
 				newstudent[index].setStudentSubject(this.subject); // 현재 로그인된 교수님의 과목으로 저장
+				newstudent[index].setStudentPassword("1234");
 				System.out.println((index+1)+"번 째 학생 추가 하였습니다.");
 				System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", newstudent[index].getStudentId(), newstudent[index].getStudentName(), this.subject);
 				System.out.println("다시 한번 학생을 추가 하시겠습니까?");
