@@ -95,9 +95,10 @@ public class Main {
 								break;
 							}
 						}
+						int exit = -1;
 						while(true) {
-							if (logInProfessor() == -1) {
-								logInProfessor();
+							if (exit == -1) {
+								exit = logInProfessor();
 							}
 							else {
 								break;

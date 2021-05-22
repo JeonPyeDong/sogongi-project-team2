@@ -146,6 +146,7 @@ public class Professor {
 
 			if (isEqualId == false) {
 				System.out.println("찾으시는 학생의 학번이 존재 하지 않습니다.");
+				System.out.println("다시 한번 입력해 주세요.");
 			} else {
 				String[] k = s[index].getStudentSubject();
 				for (int i = 0; i < k.length; i++) {
