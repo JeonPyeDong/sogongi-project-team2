@@ -9,8 +9,8 @@ public class Student {
 	public Student() {
 		
 	}
-	public Student(String id, String name, String[] subject) {
-		this.studentPassword = "1234";
+	public Student(String id, String name, String[] subject, String password) {
+		this.studentPassword = password;
 	    this.studentId = id;
 	    this.studentName = name;
 	    this.studentSubject = subject;
@@ -46,11 +46,11 @@ public class Student {
 	public void studentPasswordChange() {
 		System.out.println("-----------------");
 		Scanner scan = new Scanner(System.in);
-		System.out.print("새로운 비밀번호를 입력하시오.>> ");
+		System.out.print("새로운 비밀번호를 입력하세요. >> ");
 		String password1 = scan.next();
 		if(password1.equals(getStudentPassword())) {//새 비밀번호와 기존 비밀번호가 중복인지 확인
 			while(password1.equals(getStudentPassword())) {
-				System.out.print("중복된 비밀번호입니다. 다시: ");
+				System.out.print("중복된 비밀번호입니다. 다시 입력 >> ");
 				password1 = scan.next();
 			}
 			while(true) {     //2차 확인
@@ -102,6 +102,8 @@ public class Student {
 		case 2:        //학생 본인이 수강중인 수업 열람
 			showStudent();
 			break;
+		//case 3:
+			// 메인메뉴로 나가는 로그아웃 경우 만들어야할 듯
 		default:
 			System.out.println("잘못된 입력입니다.");
 			studentLogin();
