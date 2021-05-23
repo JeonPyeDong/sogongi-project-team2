@@ -7,8 +7,9 @@ public class Student {
 	private String studentPassword;
 	
 	public Student() {
+		this.studentId=" ";
 		for(int i = 0; i < studentSubject.length; i++) {
-			studentSubject[i] = i + " 번째  과목은 없습니다.";
+			studentSubject[i] = " ";
 		}
 	}
 	public Student(String id, String name, String[] subject, String password) {

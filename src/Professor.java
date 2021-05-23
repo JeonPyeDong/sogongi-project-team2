@@ -54,14 +54,10 @@ public class Professor {
 	}
 
 	// 학생을 생성하는 메소드. 생성된 student[] 객체를 반환한다.
-	public Student[] addStudent() {
+	public void addStudent(Student[] newstudent) {
 		Scanner sc = new Scanner(System.in);
 		String studentId;
 		String studentName;
-		Student[] newstudent = new Student[100];
-		for(int i = 0; i < 100; i++) {
-			newstudent[i] = new Student();
-		}
 		int index = getStudentNumber(); // 학생객체배열의 인덱스를 불러옴.
 		int retry = 0; // 학생추가 메소드를 반복하는 기능을 구현하기 위해 필요한 변수
 		while(true) {
@@ -119,7 +115,7 @@ public class Professor {
 			
 			else {break;} // retry가 1이면 종료
 		}
-		return newstudent; // loginProfessor로 넘어감.
+		return; // loginProfessor로 넘어감.
 			}
 
 	// 학생의 과목을 삭제하는 메소드. 교수의 과목을 받아올 필요가 없다.
@@ -157,7 +153,9 @@ public class Professor {
 				}
 				System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[index].getStudentId(),
 						s[index].getStudentName(), this.getSubject());
+				this.setStudentNumber(index-1);
 				System.out.println("해당 학생이 교수님의 과목에서 삭제 되었습니다.");
+				
 				break;
 			}
 		}
@@ -191,8 +189,6 @@ public class Professor {
 		System.out.println("수정 하려는 학생의 학번을 입력해 주세요 : ");
 		Scanner input = new Scanner(System.in);
 		String srt;
-		int index = 0;
-		// 삭제할 학생의 인덱스를 저장할 변수
 		boolean isEqualId = false;
 		// 반복문에서 학생을 찾았을 경우 true로 변경
 		while (true) {
@@ -200,7 +196,6 @@ public class Professor {
 			srt = input.next();
 			for (int i = 0; i < s.length; i++) { // 학생배열의 길이만큼 반복
 				if (srt.equals(s[i].getStudentId())) { // 입력한 값이 학생의 학번과 같으면 그 인덱스를 저장한다.
-					index = i; // 인덱스 저장
 					isEqualId = true; // 학생을 찾음
 					break;
 				}
@@ -217,18 +212,18 @@ public class Professor {
 					case 0:
 						System.out.println("수정하려는 학생의 이름을 입력해 주세요.");
 						String newName = input.next();
-						s[index].setStudentName(newName);
+						s[this.getStudentNumber()].setStudentName(newName);
 						break;
 					case 1:
 						System.out.println("수정하려는 학생의 학번을 입력해 주세요.");
 						String newId = input.next();
-						s[index].setStudentId(newId);
+						s[this.getStudentNumber()].setStudentId(newId);
 						break;
 					default:
 						System.out.println("0과 1 중 하나만 선택해 주세요.");
 				}
 			}
-			System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[index].getStudentId(), s[index].getStudentName(),
+			System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", s[this.getStudentNumber()].getStudentId(), s[this.getStudentNumber()].getStudentName(),
 					this.getSubject());
 			System.out.println("해당 학생이 교수님의 과목에서 수정 되었습니다.");
 			break;

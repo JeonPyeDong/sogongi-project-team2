@@ -17,7 +17,11 @@ public class Main {
 		professorList[4] = new Professor("강대욱", "자바프로그래밍", initpasswd);
 		professorList[5] = new Professor("임형석", "이산수학", initpasswd);
 	}	
-
+    static void setUpStudent() {
+    	for(int i = 0; i < 100; i++) {
+    		studentList[i] = new Student();
+    	}
+    }
 	// 초기 메뉴를 print 하는 메뉴
 	static void printMenu() {
 		System.out.println("=== 소프트웨어공학과 수강과목 관리 프로그램 ===");
@@ -43,7 +47,7 @@ public class Main {
 					check_idx = 1; // 1 이면 로그아웃
 					break;
 				case 1: //학생 추가
-					studentList = professorList[currentAccount].addStudent(); // studentList에 대입.
+					 professorList[currentAccount].addStudent(studentList); // studentList를 매개변수로 넘김.
 					break;
 				case 2:        //학생 삭제
 					professorList[currentAccount].deleteStudent(studentList);
@@ -64,6 +68,7 @@ public class Main {
 		int exitFlag = 0;
 		int saveFlag = 0; // 저장 후 변경이 있는지 확인하는 변수 0이면 변경후 미저장
 		setUpProfessor();
+		setUpStudent();
 		Scanner s = null;
 		try {
 				s = new Scanner(System.in);
