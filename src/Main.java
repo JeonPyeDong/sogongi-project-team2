@@ -116,33 +116,35 @@ public class Main {
 						System.out.println("안녕하세요. 학우님");
 						System.out.println("학번을 입력하세요.");
 						String id = s.next();
-						while(true) {
-						if(Student.isEqualStudentId(id, studentList)) {
-							break;}
-						else{
-							System.out.println("입략하신 ID가 존재하지 않습니다. 다시 시도해주세요.");}
-							id = s.next();
+						currentAccount = Student.indexEqualStudentId(id, studentList);
+						while(true){
+							if(currentAccount == -1){
+								System.out.println("요청하신 이름이 존재하지 않습니다. 다시입력해주세요.");
+								id = s.next();
+								currentAccount = Student.indexEqualStudentId(id, studentList);
+							}
+							else{break;}
 						}
-						System.out.println("비밀번호를 입력하세요.");
-						String password = s.next();
+						System.out.printf("%s 학우님 %n비밀번호를 입력해주세요. ", studentList[currentAccount].getStudentName());
+						String studentPassword = s.next();
+						while(true){
+							if(!studentList[currentAccount].isEqualStudentPassword(studentPassword)){
+								System.out.println("비밀번호가 일치하지 않습니다. 다시 시도 해주세요.");
+								studentPassword = s.next();							}
+							else{
+								System.out.println(studentList[currentAccount].getStudentName()+ "학우님, 환영합니다.");
+								break;
+							}
+						}
+						int exit2 = -1;
 						while(true) {
-							if(Student.isEqualStudentPassword(password, studentList)) {
-								// currentAccount를 로그인된 계정의 인덱스넘버로 바꾸고 싶어
-								System.out.println(studentList[currentAccount].getStudentName() + " 학우님 환영합니다!");
-								studentList[currentAccount].studentLogin();
-								break;}
+							if (exit2 == -1) {
+								exit2 = studentList[currentAccount].logInStudent();
+							}
 							else {
-								System.out.println("잘못된 비밀번호입니다. 다시 시도해주세요.");}
-								password = s.next();
+								break;
+							}
 						}
-					/*	학생 로그인 상태 유지. logInProfessor()처럼 studentLogin()에서 int값 반환해 줘야 함.
-						while(true) {
-							if(studentLogin() == -1){	이거 메인클래스로 가져오는 법을 모르겠습니다..
-								studentLogin();}
-							else {
-								break;}
-						}
-						*/
 						saveFlag = 0;
 						break;
 						
