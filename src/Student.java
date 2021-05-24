@@ -44,9 +44,9 @@ public class Student {
 	public void setStudentName(String name) {
 		this.studentName = name;
 	}
-	public void setStudentSubject(String subject) {
-		this.studentSubject[Main.currentAccount] = subject;
-	}
+	// public void setStudentSubject(String subject) {
+	// 	this.studentSubject[Main.currentAccount] = subject;
+	// }
 	public void setStudentPassword(String password) {
 		this.studentPassword = password;
 	}
@@ -190,5 +190,20 @@ public class Student {
 		if(password.equals(this.getStudentPassword()))
 			check = true;
 		return check;
+	}
+
+	public boolean hasSubject(String subject){
+		for(int i = 0; i< studentSubject.length; i++){
+			if(studentSubject[i].equals(subject)){
+				return true;
+			} else {
+				return false;
+			}	
+		}
+		return false;
+	}
+
+	public void enrollSubject(int code, String subject){
+		studentSubject[code] = subject;
 	}
 }
