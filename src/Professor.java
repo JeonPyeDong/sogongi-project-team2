@@ -88,7 +88,7 @@ public class Professor {
 				System.out.printf("학번 : [%s]%n이름 : [%s]%n과목명 : [%s]%n", newstudent[index].getStudentId(), newstudent[index].getStudentName(), this.subject);
 				System.out.println("다시 한번 학생을 추가 하시겠습니까?");
 				System.out.println("0. 예"); 
-				System.out.println("1. 아니요");
+				System.out.println("1. 아니오");
 				retry = sc.nextInt(); 
 				while(true) {
 				switch(retry) {
