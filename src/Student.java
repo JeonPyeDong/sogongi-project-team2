@@ -5,8 +5,8 @@ public class Student {
 	private String studentName;
 	private String[] studentSubject = new String[6];
 	private String studentPassword;
-	private String studentHobby;
-	private String studentIntroduce;
+	private String studentHobby = "없음";
+	private String studentIntroduce = "없음";
 	
 	public Student() {
 		this.studentId=" ";
@@ -54,12 +54,12 @@ public class Student {
 	public void studentPasswordChange() {
 		System.out.println("\n-----비밀번호 변경-----");
 		Scanner scan = new Scanner(System.in);
-		System.out.print("새로운 비밀번호를 입력하시오. >> ");
+		System.out.print("새로운 비밀번호를 입력하세요. >> ");
 		String password1 = scan.next();
 		if(password1.equals(getStudentPassword())) {//새 비밀번호와 기존 비밀번호가 중복인지 확인
 			while(password1.equals(getStudentPassword())) {
 				System.out.println("중복된 비밀번호입니다.");
-				System.out.print("다시 입력:");
+				System.out.print("다시 입력 >> ");
 				password1 = scan.next();
 			}
 			System.out.println("--2차 확인--");
@@ -91,8 +91,8 @@ public class Student {
 	}
 	//학생 본인이 수강중인 수업 열람 메소드.
 	public void showStudent() {
-		System.out.println("------수업 열람------");
-		System.out.println("학번: "+studentId+"   |이름: "+studentName);
+		System.out.println("------나의 수강과목------");
+		System.out.println("학번: "+studentId+" | 이름: "+studentName);
 		System.out.print("수강과목: [ ");
 		for(int i = 0; i < studentSubject.length; i++)
 			System.out.print(studentSubject[i]+" ");
@@ -101,19 +101,19 @@ public class Student {
 	}
 	//학생 본인을 소개하는 말 설정 메소드.
 	public void introduceStudent() {
-		System.out.println("-----소개하는 말-----");
+		System.out.println("----------자기소개----------");
 		Scanner scan = new Scanner(System.in);
-		System.out.println("취미: "+studentHobby);
-		System.out.println("한줄 소개: "+studentIntroduce+"\n");
-		System.out.println("소개하는 말을 변경하시겠습니까?");
-		System.out.println("1. 예");
-		System.out.println("2. 아니오");
+		System.out.println("취미 : "+studentHobby);
+		System.out.println("자기소개 : "+studentIntroduce+"\n");
+		System.out.println("자기소개글을 변경하시겠습니까?");
+		System.out.println("0. 예");
+		System.out.println("1. 아니오");
 		System.out.print("입력 >> ");
 		int input = scan.nextInt();
 		while(true) {
 			switch(input) {
-			case 1:        //변경함
-				System.out.println("--소개하는 말 변경--");
+			case 0:        //변경함
+				System.out.println("--자기소개글 변경--");
 				System.out.print("취미 >> ");
 				String hobby = scan.next();
 				System.out.print("본인을 소개하는 말을 적으세요.\n>> ");
@@ -122,13 +122,13 @@ public class Student {
 				studentIntroduce = introduce;
 				System.out.println("설정이 완료되었습니다.");
 				break;
-			case 2:        //변경하지 않음
+			case 1:        //변경하지 않음
 				break;
 			default:
 				System.out.println("잘못된 입력입니다.");
 				System.out.println("다시 입력해 주세요.");
-				System.out.println("1. 예");
-				System.out.println("2. 아니오");
+				System.out.println("0. 예");
+				System.out.println("1. 아니오");
 				System.out.print("입력 >> ");
 				input = scan.nextInt();
 				continue;
@@ -142,9 +142,9 @@ public class Student {
 		int check_idx = -1;
 		System.out.println("\n-----"+this.getStudentName()+" 학생-----");
 		System.out.println("1. 비밀번호 변경");
-		System.out.println("2. 수강중인 수업 열람");
-		System.out.println("3. 본인을 소개하는 말 설정");
-		System.out.println("0. 뒤로가기(로그아웃)");
+		System.out.println("2. 수강 과목 열람");
+		System.out.println("3. 자기소개 확인 및 변경");
+		System.out.println("0. 로그아웃");
 		System.out.print("입력 >> ");
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();

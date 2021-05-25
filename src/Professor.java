@@ -175,8 +175,8 @@ public class Professor {
 				System.out.println("찾으시는 학생의 학번이 존재 하지 않습니다.");
 				break; // 종료.
 			} else {
-				System.out.println("0. 이름수정");
-				System.out.println("1. 학번수정");
+				System.out.println("0. 이름 수정");
+				System.out.println("1. 학번 수정");
 				int s1 = input.nextInt();
 				switch (s1) {
 					case 0:
