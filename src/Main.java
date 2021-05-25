@@ -39,9 +39,9 @@ public class Main {
 		System.out.println("1. 학생 추가");
 		System.out.println("2. 학생 삭제");
 		System.out.println("3. 학생 정보 수정");
-		System.out.println("4. 학생 인명부 출력");
+		System.out.println("4. 학생 정보 표시");
 		System.out.println("5. 비밀번호 변경");
-		System.out.println("0. 뒤로가기"); // 4번 학생열람 만들어 주시면 감사하겠습니다.
+		System.out.println("0. 로그아웃");
 		System.out.print("입력 >> ");
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
@@ -50,12 +50,18 @@ public class Main {
 				check_idx = 1; // 1 이면 로그아웃
 				break;
 			case 1: // 학생 추가
+				showStudentList();
+				System.out.println();
 				studentListCount = professorList[currentAccount].addStudent(studentList, studentListCount); // studentList를 매개변수로 넘김.
 				break;
 			case 2: // 학생 삭제
+				showStudentList();
+				System.out.println();
 				professorList[currentAccount].deleteStudent(studentList);
 				break;
 			case 3: // 학생 정보수정
+				showStudentList();
+				System.out.println();
 				professorList[currentAccount].modifyStudent(studentList);
 				break;
 			case 4:
@@ -73,18 +79,19 @@ public class Main {
 	}
 
 	public static void showStudentList(){
-		System.out.println("---- 전남대학교 소프트웨어공학과 ----");
-		System.out.println("--학번--|--이름--|수강과목-----------------");
+		System.out.println("============== 전남대학교 소프트웨어공학과 ==============");
+		System.out.println("--학번--|--이름--|---------------수강과목---------------");
 		for(int i=0; i<studentListCount; i++){
 			System.out.printf("%6s | %2s  |", 
 			studentList[i].getStudentId(),
 			studentList[i].getStudentName());
 			for(int j=0; j<6; j++){
 				if(studentList[i].getStudentSubject()[j]==""){continue;}
-				else{System.out.printf("%s", studentList[i].getStudentSubject()[j]);}
+				else{System.out.printf("%s ", studentList[i].getStudentSubject()[j]);}
 			}
 			System.out.printf("%n");
 		}
+		System.out.println();
 	}
 	public static void main(String[] args) {
 
@@ -102,11 +109,13 @@ public class Main {
 					case 1:
 						System.out.println("안녕하세요. 교수님");
 						System.out.println("이름을 입력하세요.");
+						System.out.print("입력 >> ");
 						String name = s.next();
 						currentAccount = Professor.indexEqualProfessorName(name, professorList);
 						while (true) {
 							if (currentAccount == -1) {
 								System.out.println("요청하신 이름이 존재하지 않습니다. 다시입력해주세요.");
+								System.out.print("입력 >> ");
 								name = s.next();
 								currentAccount = Professor.indexEqualProfessorName(name, professorList);
 							} else {
@@ -114,12 +123,15 @@ public class Main {
 							}
 						}
 						System.out.printf("%s 교수님 %n비밀번호를 입력해주세요. ", name);
+						System.out.print("\n입력 >> ");
 						String professorPassword = s.next();
 						while (true) {
 							if (!professorList[currentAccount].isEqualProfessorPassword(professorPassword)) {
 								System.out.println("비밀번호가 일치하지 않습니다. 다시 시도 해주세요.");
+								System.out.print("입력 >> ");
 								professorPassword = s.next();
 							} else {
+								System.out.println("-----------------");
 								System.out.println(professorList[currentAccount].getName() + "교수님, 환영합니다.");
 								break;
 							}
@@ -138,11 +150,13 @@ public class Main {
 					case 2:
 						System.out.println("안녕하세요. 학우님");
 						System.out.println("학번을 입력하세요.");
+						System.out.print("입력 >> ");
 						String id = s.next();
 						currentAccount = Student.indexEqualStudentId(id, studentList);
 						while (true) {
 							if (currentAccount == -1) {
 								System.out.println("요청하신 이름이 존재하지 않습니다. 다시입력해주세요.");
+								System.out.print("입력 >> ");
 								id = s.next();
 								currentAccount = Student.indexEqualStudentId(id, studentList);
 							} else {
@@ -150,10 +164,12 @@ public class Main {
 							}
 						}
 						System.out.printf("%s 학우님 %n비밀번호를 입력해주세요. ", studentList[currentAccount].getStudentName());
+						System.out.print("\n입력 >> ");
 						String studentPassword = s.next();
 						while (true) {
 							if (!studentList[currentAccount].isEqualStudentPassword(studentPassword)) {
 								System.out.println("비밀번호가 일치하지 않습니다. 다시 시도 해주세요.");
+								System.out.print("입력 >> ");
 								studentPassword = s.next();
 							} else {
 								System.out.println(studentList[currentAccount].getStudentName() + "학우님, 환영합니다.");
