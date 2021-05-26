@@ -41,6 +41,7 @@ public class Main {
 		System.out.println("3. 학생 정보 수정");
 		System.out.println("4. 학생 정보 표시");
 		System.out.println("5. 비밀번호 변경");
+		System.out.println("6. 학생 검색");
 		System.out.println("0. 로그아웃");
 		System.out.print("입력 >> ");
 		Scanner scan = new Scanner(System.in);
@@ -52,7 +53,8 @@ public class Main {
 			case 1: // 학생 추가
 				showStudentList();
 				System.out.println();
-				studentListCount = professorList[currentAccount].addStudent(studentList, studentListCount); // studentList를 매개변수로 넘김.
+				studentListCount = professorList[currentAccount].addStudent(studentList, studentListCount); // studentList를
+																											// 매개변수로 넘김.
 				break;
 			case 2: // 학생 삭제
 				showStudentList();
@@ -70,6 +72,9 @@ public class Main {
 			case 5:
 				professorList[currentAccount].changePassword();
 				break;
+			case 6:
+				searchStudent();
+				break;
 			default:
 				System.out.println("잘못된 입력입니다. ");
 				System.out.println("다시 입력해 주세요. ");
@@ -78,21 +83,57 @@ public class Main {
 		return check_idx;
 	}
 
-	public static void showStudentList(){
+	public static void showStudentList() {
 		System.out.println("============== 전남대학교 소프트웨어공학과 ==============");
 		System.out.println("--학번--|--이름--|---------------수강과목---------------");
-		for(int i=0; i<studentListCount; i++){
-			System.out.printf("%6s | %2s  |", 
-			studentList[i].getStudentId(),
-			studentList[i].getStudentName());
-			for(int j=0; j<6; j++){
-				if(studentList[i].getStudentSubject()[j]==""){continue;}
-				else{System.out.printf("%s ", studentList[i].getStudentSubject()[j]);}
+		for (int i = 0; i < studentListCount; i++) {
+			System.out.printf("%6s | %2s  |", studentList[i].getStudentId(), studentList[i].getStudentName());
+			for (int j = 0; j < 6; j++) {
+				if (studentList[i].getStudentSubject()[j] == "") {
+					continue;
+				} else {
+					System.out.printf("%s ", studentList[i].getStudentSubject()[j]);
+				}
 			}
 			System.out.printf("%n");
 		}
 		System.out.println();
 	}
+
+	public static void searchStudent() {
+		int searchResultIndex = -1;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("찾으려는 학생의 학번을 입력해주세요.");
+		String searchId = sc.next();
+		for (int i = 0; i < studentListCount; i++) {
+			if (searchId.equals(studentList[i].getStudentId())) {
+				System.out.printf("학번 : %s 이름 : %s%n",
+					studentList[i].getStudentId(),
+					studentList[i].getStudentName()
+				);
+				searchResultIndex = i;
+				break;
+			}
+		}
+
+		if (searchResultIndex == -1) {
+			int count = 0;
+			for (int i = 0; i < studentListCount; i++) {
+				if (searchId.equals(studentList[i].getStudentName())) {
+					System.out.printf("학번 : %s 이름 : %s%n",
+					studentList[i].getStudentId(),
+					studentList[i].getStudentName()
+					);
+					count++;
+				}
+			}
+			System.out.printf("총 %d 건의 검색결과를 출력하였습니다.%n", count);
+		}
+
+		
+
+	}
+
 	public static void main(String[] args) {
 
 		int exitFlag = 0;
