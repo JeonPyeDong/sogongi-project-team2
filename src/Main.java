@@ -84,6 +84,7 @@ public class Main {
 	}
 
 	public static void showStudentList() {
+		System.out.println();
 		System.out.println("============== 전남대학교 소프트웨어공학과 ==============");
 		System.out.printf("%7s%7s---------------수강과목---------------%n", "학번", "이름");
 		for (int i = 0; i < studentListCount; i++) {
