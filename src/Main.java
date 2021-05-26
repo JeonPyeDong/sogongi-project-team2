@@ -85,9 +85,9 @@ public class Main {
 
 	public static void showStudentList() {
 		System.out.println("============== 전남대학교 소프트웨어공학과 ==============");
-		System.out.println("--학번--|--이름--|---------------수강과목---------------");
+		System.out.printf("%7s%7s---------------수강과목---------------%n", "학번", "이름");
 		for (int i = 0; i < studentListCount; i++) {
-			System.out.printf("%6s | %2s  |", studentList[i].getStudentId(), studentList[i].getStudentName());
+			System.out.printf("%7s%7s", studentList[i].getStudentId(), studentList[i].getStudentName());
 			for (int j = 0; j < 6; j++) {
 				if (studentList[i].getStudentSubject()[j] == "") {
 					continue;
@@ -103,7 +103,7 @@ public class Main {
 	public static void searchStudent() {
 		int searchResultIndex = -1;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("찾으려는 학생의 학번을 입력해주세요.");
+		System.out.println("찾으려는 학생의 학번 혹은 이름을 입력해주세요.");
 		String searchId = sc.next();
 		for (int i = 0; i < studentListCount; i++) {
 			if (searchId.equals(studentList[i].getStudentId())) {
@@ -111,6 +111,10 @@ public class Main {
 					studentList[i].getStudentId(),
 					studentList[i].getStudentName()
 				);
+				System.out.printf("취미 : %s%n한줄로 하는 자기소개 : %s%n%n", 
+				studentList[i].getStudentHobby(),
+				studentList[i].getStudentIntroduce());
+				
 				searchResultIndex = i;
 				break;
 			}
@@ -123,6 +127,10 @@ public class Main {
 					System.out.printf("학번 : %s 이름 : %s%n",
 					studentList[i].getStudentId(),
 					studentList[i].getStudentName()
+					);
+					System.out.printf("취미 : %s%n한줄로 하는 자기소개 : %s%n%n", 
+					studentList[i].getStudentHobby(),
+					studentList[i].getStudentIntroduce()
 					);
 					count++;
 				}
